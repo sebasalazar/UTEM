@@ -1,0 +1,42 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} 
+
+
+%opening
+\title{Tarea Computacional 00}
+\author{Sebastián Salazar Molina.}
+\date{16 de Marzo de 2015}
+
+\begin{document}
+
+\maketitle
+
+\section{El problema del Azar}
+
+
+Una empresa de juegos de azar ``Al lote, ría'', necesita un software que realice los sorteos de su juego estrella ``Qno''.
+\newline
+Qno consiste en escoger de una forma completamente aleatorea 14 números de un conjunto finito de números que van del 1 al 25.
+\newline
+Se le solicita crear un programa que reciba los parámetros a través de la {\bf línea de comandos}, el orden de ejecución es el siguiente:
+\begin{itemize} 
+ \item Al ejecutar el programa con la opción {\bf -g}. El programa debe generar un archivo separado por punto y coma (;) de extensión csv, que tiene la siguiente estructura: Fecha en formato ISO (yyyy-mm-dd HH:mm:ss) y la lista de numeros (Ejemplo: {\bf 2015-03-16 12:15;01;02;04;06;07;09;11;13;14;16;20;22;23}). En cada ejecución el programa debe agregar la línea del sorteo.
+ \item Al ejecutar el programa con la opción {\bf -v} el programa debe mostrar en pantalla la información de los integrantes del grupo y la fecha de compilación, posterior a esto debe terminar.
+\end{itemize}
+
+
+La forma de discriminar las implementaciones, será en función de la probabilidad de aparición de cada número, entre más aleatoreo mejor.
+
+
+\subsection{Condiciones}
+
+\begin{itemize}
+ \item El lenguaje de programación debe ser C o C++. El compilador en que se revisará será gcc (aconsejo usar MinGW en Windows).
+ \item El trabajo debe ser realizado por los grupos de 3 personas, este grupo será definitivo a lo largo del semestre.
+ \item La fecha de entrega es hasta el 22 de Marzo de 2015 a las 23:55 (hora continental de Chile), deben enviarme un correo electrónico con la dirección de su repositorio GitHub.
+ \item Cualquier duda, la pueden expresar en el grupo de Facebook o a mi correo.
+\end{itemize}
+
+
+\end{document}

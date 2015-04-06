@@ -1,0 +1,287 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+% \usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+
+\pdfinfo
+{
+  /Title       (Ingeniería de Software)
+  /Creator     (TeX)
+  /Author      (Sebastián Salazar Molina)
+}
+
+
+\title{Ingeniería de Software}
+\subtitle{Introducción}
+\author{Sebastián Salazar Molina.}
+\institute[INF - UTEM] { Unidad de Informática - Universidad Tecnológica Metropolitana }
+\date{16 de Marzo de 2015}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section*{}
+\begin{frame}
+  \frametitle{Contenidos}
+  \tableofcontents[section=1,hidesubsections]
+\end{frame}
+
+\AtBeginSection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[currentsection,hideallsubsections]
+  }
+}
+
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide]
+  }
+}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Content starts here %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% Requerimientos
+\section{Requerimientos}
+\subsection{Introducción.}
+
+\begin{frame}
+ \begin{quote}
+La mayoría de las veces, la gente no sabe lo que quiere hasta que se los muestras.
+ \newline
+ \raggedleft{-- Steve Jobs.}
+ \end{quote}
+\end{frame}
+
+
+\subsection{Requerimientos}
+
+\begin{frame}
+\frametitle{Requerimientos}
+Los requerimientos de un sistema, son una descripción, una necesidad o una restricción que debe cumplir la solución de software.
+\end{frame}
+
+\begin{frame}
+\frametitle{Clasificación de los Requerimientos}
+Cada tipo de requerimiento se puede clasificar en tres categorías:
+\begin{itemize}
+ \item<2-> Requerimientos funcionales.
+ \item<3-> Requerimientos no funcionales.
+ \item<4-> Requerimientos de Dominio.
+\end{itemize}
+\end{frame}
+
+\section{Clasificación de los Requerimientos}
+\subsection{Requerimientos Funcionales}
+\begin{frame}
+\frametitle{Requerimientos Funcionales.}
+Los requerimientos funcionales, explican lo que el sistema debe hacer. Es una descripción detallada, donde se explicitan las entradas, las salidas y las condiciones de bordes esperadas (o las excepciones). Esta definición debe cumplir con condiciones:
+\begin{itemize}
+ \item<2-> Se deben definir todos los servicios esperados por los clientes (principio de complitud).
+ \item<3-> Las definiciones no deben ser contradictorias (principio de consistencia).
+\end{itemize}
+\end{frame}
+
+\subsection{Requerimientos NO funcionales.}
+\begin{frame}
+\frametitle{Requerimientos NO funcionales.}
+Los requerimientos NO funcionales, son aquellos que apuntan propiedades esperadas que debe satisfacer el sistema. Es decir, apuntan a la operación del producto de Software, lo usual, es definir la \alert{estabilidad}, la \alert{portabilidad} y el \alert{costo} esperado.
+Los requerimientos no funcionales, deben ser medibles.
+\end{frame}
+
+\begin{frame}
+\frametitle{Ejemplos.}
+\begin{itemize}
+ \item<2-> La tolerancia a fallos.
+ \item<3-> Los tiempos de Respuestas.
+ \item<4-> La planificación del crecimiento de datos.
+ \item<5-> El consumo de recursos (memoria, banda ancha, etc...)
+ \item<6-> El rendimiento esperado.
+ \item<7-> Herramientas de desarrollo.
+ \item<8->  Etc.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Clasificación.}
+A su vez, podemos clasificar los requerimientos no funcionales en tres subcategorías:
+\begin{itemize}
+ \item<2 ->  Los requerimientos del \alert{producto}. Que apuntan al comportamiento esperado del Software (ej: Tiempo de respuesta, consumo de memoria, etc...)
+ \item<3-> Los requerimientos \alert{organizacionales}. Que apuntan a las políticas y estándares usados en las organizaciones que intervienen en el desarrollo (ej: Plataforma de Desarrollo, Sistema Operativo, Herramientas, etc).
+ \item<4-> Los requerimientos \alert{externos}. Que apuntan principalmente a la interoperabilidad o a las restricciones legales. (ej: Un sistema contable debe operar bajo la norma tributaria del país)
+\end{itemize}
+\end{frame}
+
+
+\subsection{Requerimientos de Dominio.}
+\begin{frame}
+\frametitle{Requerimientos de Dominio.}
+Los requerimientos de Dominio, apuntan a definir particularidades del sistema, usualmente se refieren a la forma en que se deben realizar ciertos cálculos (ej: definición de formulas, sistema de medidas).
+\end{frame}
+
+\section{Requerimientos de Software}
+\subsection{Tipos de Requerimientos de Software}
+\begin{frame}
+\frametitle{Tipos de Requerimientos de Software.}
+Según la literatura, se pueden distinguir dos tipos de requerimientos.
+\begin{itemize}
+ \item<2-> Requerimientos de usuario. Se relaciona con los usuarios (\alert{usabilidad}).
+ \item<3-> Requerimientos de sistema. Se relaciona con el sistema (\alert{funcionalidad}).
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{Requerimientos de Usuario.}
+\begin{frame}
+\frametitle{Requerimientos de Usuario.}
+Los requerimientos de usuario describen el sistema, de tal forma que sea entendible por personas no técnicas. Lo usual, es describirlos en lenguaje natural. O usar diagramas simples.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Problemas comunes con los requerimientos de usuarios.}
+\begin{itemize}
+ \item<2-> Falta de claridad.
+ \item<3-> Confusión de Requerimientos.
+ \item<4-> Conjunción de Requerimientos.
+\end{itemize}
+\end{frame}
+
+
+\subsection{Requerimientos de sistema.}
+\begin{frame}
+\frametitle{Requerimientos de Sistema.}
+Son aquellas definiciones que permitirán diseñar el modelo del sistema.
+Es una especificación completa y consistente del sistema.
+\end{frame}
+
+
+\section{Levantamiento de Requerimientos}
+\begin{frame}
+\frametitle{Levantamiento de requerimientos.}
+El levantamiento de requerimientos, es el proceso que transforma un conjunto de necesidades en un producto de software.
+La literatura, establece cuatro etapas principales:
+\begin{itemize}
+ \item<2-> Estudio de Viabilidad.
+ \item<3-> Obtención (y análisis) de requerimientos.
+ \item<4-> Especificación.
+ \item<5-> Validación.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Estudio de Viabilidad.}
+El estudio de viabilidad apunta a evaluar si el proyecto es útil para alcanzar los objetivos de la organización.
+La idea es identificar la información necesaria (y conseguirla) para redactar el informe de factibilidad, que determinará si se debe o no continuar con el proyecto. Dicho informe debe responder con claridad tres preguntas:
+\begin{itemize}
+ \item<2-> ¿El proyecto se condice con los objetivos de la organización?.
+ \item<3-> ¿Se puede implementar con la tecnología que posee actualmente la organización y con el presupuesto disponible?.
+ \item<4-> ¿Se puede integrar con los demás sistemas de la organización?.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Obtención y Análisis de Requerimientos.}
+
+Esta es la actividad en donde se trabaja con los usuarios y los stakeholders (personas involucradas o afectadas por el proyecto) para obtener los requerimientos funcionales, no funcionales y los de dominio. Las actividades de este proceso son:
+\begin{itemize}
+ \item<2-> Recopilar los requerimientos.
+ \item<3-> Clasificar y organizar los requerimientos.
+ \item<4-> Ordenarlos por prioridades (usualmente se negocian los requerimientos en esta etapa).
+ \item<5-> Documentar.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Especificación.}
+Este proceso transforma los requerimientos de usuarios del lenguaje natural a una especificación de Software.
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Validación de Requerimientos.}
+El objetivo de la etapa, es demostrar que los requerimientos satisfacen la definición del sistema pedido por el cliente. Para lograr esto, se realizan un conjunto de validaciones:
+\begin{itemize}
+ \item Verificación de Validez. ¿Las necesidades del usuario son válidas? Muchas veces, los usuarios reportan necesidades que no solucionan problema alguno.
+ \item Consistencia: Los requerimientos no deben contradecirse.
+ \item Completitud: Deben estar definidos todas las funciones necesarias del sistema.
+ \item Realismo. Se busca determinar si el proyecto es realizable en base a la tecnología existente, el presupuesto y los recursos.
+ \item Verificabilidad. Los requerimientos DEBEN ser medibles de alguna manera.
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Finalización del levantamiento de Requerimiento.}
+
+El último paso del levantamiento de Requerimientos, es en base al documento final. Que debe ser leído y aprobado por los involucrados en el proyecto. El objetivo es eliminar los errores, los conflictos y las contradicciones. En el documento final, cada requerimiento debe cumplir cuatro principios:
+\begin{itemize}
+ \item Verificabilidad.
+ \item Comprensibilidad.
+ \item Rastreabilidad.
+ \item Adaptabilidad.
+\end{itemize}
+\end{frame}
+
+
+\section{Gestión de Requerimientos}
+\begin{frame}
+\frametitle{Gestión de Requerimientos.}
+El principal objetivo de la gestión de requerimientos, es hacer una correcta gestión de cambios de los requerimientos. Es un hecho que durante el transcursos del proyecto los requerimientos cambiarán, estos es particularmente cierto, en sistemas grandes que solucionan problemas transversales (sistemas de gestión).
+La forma de abordar esta problemática, es identificar correctamente aquellos requerimientos \alert{duraderos} (que definitivamente no cambiarán) de aquellos \alert{volátiles} (los que cambiarán).
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Gestión de Requerimientos.}
+
+Es común, que ante la eventualidad de un cambio en un requerimiento, este se realice sin un detallado análisis sobre el \alert{impacto} que dicho cambio generará. Esto produce una gran cantidad de efectos colaterales que muchas veces pasan de manera inadvertida hasta generar un problema muy grande.
+La solución, pasa por utilizar una metodología de desarrollo adecuada con el proyecto.
+\end{frame}
+
+
+
+\frame{
+  \vspace{2cm}
+  {\huge ¿ Preguntas ?}
+
+  \vspace{3cm}
+  \begin{flushright}
+    Sebastián Salazar Molina
+
+    \structure{\footnotesize{sebasalazar@gmail.com}}
+  \end{flushright}
+}
+
+\end{document}

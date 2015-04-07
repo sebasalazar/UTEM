@@ -1,5 +1,5 @@
 
-NAME= clase02
+NAME= clase03
 
 all: $(NAME).pdf
 

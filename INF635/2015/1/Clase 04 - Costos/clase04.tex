@@ -1,0 +1,198 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+% \usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+
+\pdfinfo
+{
+  /Title       (Ingeniería de Software)
+  /Creator     (TeX)
+  /Author      (Sebastián Salazar Molina)
+}
+
+
+\title{Ingeniería de Software}
+\subtitle{Costos}
+\author{Sebastián Salazar Molina.}
+\institute[INF - UTEM] { Unidad de Informática - Universidad Tecnológica Metropolitana }
+\date{13 de Abril de 2015}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section*{}
+\begin{frame}
+  \frametitle{Contenidos}
+  \tableofcontents[section=1,hidesubsections]
+\end{frame}
+
+\AtBeginSection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[currentsection,hideallsubsections]
+  }
+}
+
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide]
+  }
+}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Content starts here %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Proyectos de Software}
+\subsection{Introducción}
+
+\begin{frame}
+ \begin{quote}
+    ``Si la industria automovilística hubiera seguido el mismo desarrollo que los ordenadores, un Rolls-Royce costaría hoy 100 dólares, circularía un millón de millas con 3,7 litros y explotaría una vez al año, eliminando a todo el que estuviera dentro en ese momento''
+ \newline
+ \raggedleft{-- Robert X. Cringely.}
+ \end{quote}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Introducción}
+ El segundo problema real que se enfrenta todo profesional del software, es estimar cuánto cuesta su trabajo (El primero, es nombrar un proyecto).
+ \newline
+ Aunque la intuición y el ``lanzarse'' a la piscina pueden ayudar, no son ``herramientas'' fiables, existen formas académicas de estimar los costos de una solución de software, aunque nada supera la \alert{experiencia} en esta tarea.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Costos, Esfuerzo y Tiempo}
+ La estimación del esfuerzo dentro de un proyecto, es una de las mayores dificultades a la hora de realizarlo, la naturaleza intangible del software, junto con la dependencia que tiene del equipo de trabajo, hace que la estimación del esfuerzo necesario para su construcción sea una actividad \alert{subjetiva}, durante el desarrollo de la Ingeniería de Software, se han creado diversas métricas tendientes a facilitar la tarea de estimar el costo del Software.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Costos, Esfuerzo y Tiempo}
+ El objetivo es determinar el tiempo que toma desarrollar el proyecto, para posteriormente transformarlo en un valor económico.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Clasificación}
+ Según mi experiencia, dependiendo del enfoque de las técnicas, las podemos clasificar en:
+ \begin{itemize}
+  \item<2-> Técnicas pútridas (basadas en las líneas de código). 
+  \item<3-> Técnicas menos pútridas (basadas en las características del software)
+  \item<4-> La experiencia.
+ \end{itemize}
+\end{frame}
+
+\section{Estimación de Esfuerzo}
+\subsection{COCOMO}
+
+\begin{frame}
+  \frametitle{COCOMO}
+  COCOMO I, es modelo de estimaciones matemáticas basado en la magnitud del producto final, midiendo el ``tamaño'' del proyecto, principalmente en líneas de
+código. Esta técnica considera diferencias en los lenguajes de programación, por lo que desarrollar un producto de software tendrá un valor distinto, en función del lenguaje usado.
+\newline
+Existe una versión ``mejorada'' de COCOMO. COCOMO II, desarrollado por la  Universidad de California del Sur (EEUU). 
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Ejemplo}
+ Para demostrar la técnica, usaremos la herramienta \alert{sloccount} sobre la Tarea de Alvaro Cabedo Vásquez. Según la herramienta:
+    \begin{itemize}
+     \item<2-> 104 líneas de código (100\% escrito en C++).
+     \item<3-> Se necesitan ``0.22'' desarrollador que le tomaría 1,41 meses terminar el proyecto.
+     \item<3-> Costo anual: 2509 USD
+    \end{itemize}
+\end{frame}
+
+\subsection{Puntos de Función}
+
+\begin{frame}
+ \frametitle{Puntos de Función}
+ A diferencia de COCOMO, los puntos de función buscan medir el tamaño funcional del sistema, de un modo independiente a la tecnología o al lenguaje de programación en el cuál se implementa la solución.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Puntos de Función}
+ La técnica consiste en asignar una cantidad de "puntos" a una aplicación informática según la complejidad de los datos que maneja y de los procesos que realiza sobre ellos. Siempre tratando de considerarlo desde el punto de vista del \alert{usuario}.
+\end{frame}
+
+\begin{frame}
+ \frametitle{Puntos de Función IFPUG-FPA}
+ Pasos generales:
+ \begin{itemize}
+  \item<2-> Determinar el tipo de proyecto (proyecto nuevo, una mejora, etc).
+  \item<3-> Delimitar el alcance de lo que se va a medir.
+  \item<4-> Se realiza un inventario de los archivos lógicos utilizados (vistos como un usuario) tanto internos de la aplicación como mantenidos por otra aplicación. Para cada uno de ellos se recuenta el número de datos y de registros lógicos. En función de este número se calcula para cada fichero un índice de complejidad y posteriormente una contribución en puntos función.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Puntos de Función IFPUG-FPA}
+ \begin{itemize}
+  \item<1-> De modo similar se realiza un inventario de los procesos elementales del sistema, distinguiendo los procesos de entrada, salida y consulta. Según el número de ficheros lógicos y datos que maneja cada proceso y de su naturaleza, se calcula su índice de complejidad y su contribución en puntos función.
+  \item<2-> A partir de los recuentos anteriores se calcula un recuento total bruto (sin ajustar).
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Puntos de Función IFPUG-FPA}
+ \begin{itemize}
+  \item<1-> En función de 14 ``características generales del sistema'' que se valoran de 0 a 5 en función de su grado de influencia, se calcula un factor de ajuste al recuento. Estas características tienen que ver con la arquitectura de la aplicación, sus requisitos de carga y rendimiento, complejidad de cálculos, etc.. 
+  \item<2-> Aplicando el factor de ajuste al recuento bruto se obtiene el recuento final.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Costo}
+ Pese a que no existe consenso, empíricamente se sabe que:
+ \begin{itemize}
+  \item<2-> Un desarrollado es capaz de ``implementar'' 3.5 puntos de función por día (aproximadamente 0.45 puntos de función por hora).
+  \item<3-> En un mes un ingeniero es capaz de desarrollar entre 70 a 80 puntos de función.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Costos}
+ La cantidad total de puntos de función, nos indicará la cantidad total de profesionales necesaria para terminar el proyecto en una fecha dada. Además con el tiempo, podemos determinar el costo económico del trabajo, en función del valor hora (o valor mensual) que pagamos a nuestros desarrolladores. El costo del proyecto, será el costo de realizarlo, más el factor de ajuste asociado a la ganancia esperada.
+\end{frame}
+
+
+
+\frame{
+  \vspace{2cm}
+  {\huge ¿ Preguntas ?}
+
+  \vspace{3cm}
+  \begin{flushright}
+    Sebastián Salazar Molina
+
+    \structure{\footnotesize{sebasalazar@gmail.com}}
+  \end{flushright}
+}
+
+\end{document}

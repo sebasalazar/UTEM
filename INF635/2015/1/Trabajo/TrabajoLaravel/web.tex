@@ -20,24 +20,39 @@ La asignación de recursos es una actividad de gran importancia para las institu
 
 El último punto es de principal interes, basta ver las secretarias de estudio los primeros días de clases, la información esta centralizada en un lugar, donde el acceso a la información se dificulta debido a la alta demanda por parte del estudiantado. No hay forma de saber información extra sobre la asignación de las salas sin tener que visitar la secretaría de estudios, una pérdida innecesaria de tiempo. Si tan sólo alguien creara una forma de obtener esta información en nuestros gadgets ...
 Objetivos
-General
+
+\subsection{General}
 
 Desarrollar un sistema web que permita manejar integralmente la información sobre asignación de salas para la secretaría de estudios de cada campus.
-Específicos
 
-    Modelar el dominio del problema utilizando un paradigma orientado a objetos.
-    Aplicar el patrón arquitectónico MVC sobre una aplicación del mundo real.
-    Utilizar el framework Laravel para desarrollar un sistema web.
-    Aplicar metodologías de desarrollo con un equipo de trabajo definido.
+\subsection{Específicos}
+
+\begin{itemize}
+ \item Modelar el dominio del problema utilizando un paradigma orientado a objetos.
+ \item Aplicar el patrón arquitectónico MVC sobre una aplicación del mundo real.
+ \item Utilizar el framework Laravel para desarrollar un sistema web.
+ \item Aplicar metodologías de desarrollo con un equipo de trabajo definido.
+\end{itemize}
+
+    
 
 \section{Requerimientos funcionales}
 
 La plataforma a desarrollar es de tipo web, los requerimientos de lado servidor son los siguientes:
 
-    SO: Ubuntu Server 14.04 x64.
-    Motor DB: PostgreSQL 9.3.
-    Framework PHP: Laravel 5.0.x.
-    Lenguaje: PHP 5.5.
+\begin{itemize}
+ \item {\bf Motor DB}: PostgreSQL 9.X
+ \item {\bf Framework PHP}: Laravel 5.0.x.
+\end{itemize}
+
+El ambiente de pruebas será:
+
+\begin{itemize}
+ \item {\bf SO}: Ubuntu Server 14.04 x64.
+ \item {\bf Motor DB}: PostgreSQL 9.3.
+ \item {\bf Framework PHP}: Laravel 5.0.x.
+ \item {\bf Lenguaje}: PHP 5.5.
+\end{itemize}
 
 Los requerimientos funcionales están enfocados en las funcionalidades que cada perfíl de usuario puede realizar, detallandose en el siguiente punto.
 
@@ -45,13 +60,16 @@ Los requerimientos funcionales están enfocados en las funcionalidades que cada 
 \subsection{Administrador}
 
 Este perfil esta encargado de la administración general del sistema, puede crear/modificar/archivar campus, asignar encargados a estos, asignar perfiles a usuarios existentes en la base de datos de la universidad (e.g: Promover a un estudiante a ser administrador o encargado de campus).
-Encargado campus
+
+\subsection{Encargado campus}
 
 Este perfil esta encargado de la realidad de las salas en su/sus campus asignados:
 
-    Modificar aspectos como la capacidad y nombre de salas.
-    Asignación de salas a un respectivo curso/evento en un periodo específico del calendario académico.
-    Ingreso de datos académicos (e.g Cursos, asignaturas, estudiantes).
+\begin{itemize}
+ \item Modificar aspectos como la capacidad y nombre de salas.
+ \item Asignación de salas a un respectivo curso/evento en un periodo específico del calendario académico.
+ \item Ingreso de datos académicos (e.g Cursos, asignaturas, estudiantes).
+\end{itemize}
 
 \subsection{Estudiante}
 
@@ -65,19 +83,25 @@ Este perfil puede consultar en que periodos tenga que dictar cátedras/laborator
 
 Los requerimientos no funcionales vertidos en este documento se enfocan sobre los ejes de la seguridad, usabilidad y mantenibilidad.
 
-    Las operaciones realizadas por cada perfil descrito deben estar regidas por un control de acceso que evite acciones indeseadas para cada perfil (ej: Un estudiante no puede modificar la capacidad de una sala).
-    La operación de carga de datos es en función al volumen de datos, por lo que el sistema es considerado inusable si es necesario ingresar 1000 asignaturas una a una.
-    El uso de credenciales debe ser el más sencillo para los usuarios finales, como todos los usuarios pertenecen de alguna forma a la universidad ya podrán imaginarse como autenticarlos.
-    El sistema puede ser usado por un largo periodo de tiempo, sin recibir atención del equipo de desarrollo a cargo, por lo que debe considerar los cambios básicos del calendario académico universitario.
+\begin{itemize}
+  \item Las operaciones realizadas por cada perfil descrito deben estar regidas por un control de acceso que evite acciones indeseadas para cada perfil (ej: Un estudiante no puede modificar la capacidad de una sala).
+  \item La operación de carga de datos es en función al volumen de datos, por lo que el sistema es considerado inusable si es necesario ingresar 1000 asignaturas una a una.
+  \item El uso de credenciales debe ser el más sencillo para los usuarios finales, como todos los usuarios pertenecen de alguna forma a la universidad ya podrán imaginarse como autenticarlos.
+  \item El sistema puede ser usado por un largo periodo de tiempo, sin recibir atención del equipo de desarrollo a cargo, por lo que debe considerar los cambios básicos del calendario académico universitario.
+
+\end{itemize}
 
 \section{Parámetros a evaluar}
 
 La evaluación considera los siguientes puntos:
 
-    Uso de metodologías.
-    Uso de herramientas (Framework/Control de versiones).
-    Completitud de los requerimientos funcionales.
-    Generación de la documentación pertinente.
+\begin{itemize}
+  \item Uso de metodologías.
+  \item Uso de herramientas (Framework/Control de versiones).
+  \item Completitud de los requerimientos funcionales.
+  \item Generación de la documentación pertinente.
+\end{itemize}
+
 
 \section{Proyecto}
 

@@ -1,0 +1,100 @@
+\documentclass[10pt]{examdesign}
+\usepackage{amsmath}
+\usepackage{pifont}
+% Idioma
+\usepackage[spanish]{babel} % Para separar correctamente las palabras de multitud de idiomas
+\usepackage[utf8]{inputenc} %Este paquete permite poner acentos directamente y eñes
+\usepackage{graphicx}
+\SectionFont{\large\sffamily}
+\Fullpages
+\ContinuousNumbering
+%\ShortKey
+% Cantidad de Versiones
+\NumberOfVersions{1}
+\DefineAnswerWrapper{\\ {\bf Respuesta} \\}{}
+\SectionPrefix {}
+% \IncludeFromFile{foobar.tex}
+
+\class{{\Large Ingeniería de Software}}
+\NoKey
+\OneKey
+\examname{Prueba 1}
+\begin{document}
+
+\begin{shortanswer}[title={Pregunta de desarrollo}, rearrange=yes,resetcounter=yes]
+{\bf Se pide justificar debidamente cada una de las respuestas, que en total tendrán un valor de 60 puntos.}
+
+% 1
+\begin{question}
+	Se ha encargado a su empresa desarrollar un proyecto para ``Falaferia''. El proyecto consiste en agregar funcionalidad a una aplicación web que está desarrollado en strut 1 (java 1.5 llegó al final de su vida útil en Octubre de 2009) y oracle 9i, dicha aplicación en un contenedor tomcat 5.
+	\newline
+	Falaferia ingresó al negocio de la telefonía móvil, como un operador virtual {\bf Falaferia Mobile}, el problema es que actualmente si un cliente desea portarse o comprar un celular a Falaferia, debe ir a una de las pocas tiendas que hay para este propósito, esto se ha traducido en que muy pocas personas han preferido ``Falaferia Mobile''. Después de un complejo proceso de análisis, el área de Marketing ha deducido que si la funcionalidad ``Falaferia Mobile'' se agregara al sistema de retail (que actualmente se ejecuta en todas las tiendas), cualquier tienda de Falaferia podría hacer dichas ventas, y muy probablemente la gente comience a preferirlo más. Para realizar lo mencionado se ha ideado este proyecto.
+	\newline
+	Ahora bien, la gerencia piensa que el desarrollo de este proyecto es sencillo y ha puesto a un jefe de proyecto muy novato, que recientemente ha comenzado a trabajar en Falaferia ( no tiene experiencia ni en el negocio ni en la problemática), Además, en este proyecto trabajan distintas áreas que colaborarán con partes muy específicas y delicadas a través de webservices, estas áreas son Financiera (parte crediticia), Mobile (la lógicia de telefonía), Marketing (las promociones) y el Core del negocio (que integra todo el retail), todas estas áreas tienen ideas muy distintas sobre la complejidad del proyecto y por lo mismo su nivel de participación es variada. 
+	\newline 
+	Su empresa ha estudiado el problema y lo clasifica como un proyecto difícil, ya que el proceso tiene muchas aristas, un complejo sistema de perfiles y la interacción con una gran cantidad de sistemas externos.
+	\newline
+	Su equipo está compuesto por 3 personas, usted que tiene el rol de Jefe de proyecto, un desarrollador muy hábil en web y otro desarrollador con habilidades en base de datos, pero todos son capaces de hacer de todo y se demoran lo mismo en hacer las tareas. La estimación indica que el proyecto tomaría 570 HH. Del total se dedicarán unas 70 HH para la planificación y documentación (Cuyo costo es de 2 UF cada HH), unas 40 HH a Quality Assurance (QA) (1 UF cada HH) y el resto se destinará a Desarrollo (a un costo de 2.5 UF cada HH), cabe destacar que las tareas de Planificación y QA son secuenciales, mientras que el desarrollo está muy bien desglosado y es perfectamente paralelizable. 
+	\newline
+	El proyecto comenzó mal, nadie respaldó el proyecto y el jefe de proyecto de Falaferia estaba luchando solo, sus contrapartes internas salieron de vacaciones y durante semanas el proyecto avanzaba a ciegas, nadie formalizaba ningún requerimientos y las necesidades eran ambiguas y contradictorias, Usted y su equipo ante la falta de información, trabajaron en base a supuestos. Otra dificultad fue que ningún sistema externo estaba documentado, el conocimiento lo tenían personas muy específicas y sus vacaciones complicaron el avance en la carta gantt. Por otro lado la complejidad del proyecto quedó latente cuando los desarrollos de las distintas áreas involucradas se atrasaron y con el retraso, llegaron las críticas. Situación que se tradujo en la renuncia del jefe de proyecto de Falaferia. Esto motivo que durante 2 semanas el proyecto quedara paralizado. Ante la falta de liderazgo, el área Mobile tomó las riendas del proyecto y obligó a los distintos proveedores (usted incluido) a trabajar en las dependencias de Falaferia Mobile. Para cumplir con los plazos ideales se contrató a un proveedor dedicado a hacer pruebas, el trabajo fue caótico, ya que no existía ningún tipo de orden y la prioridad en los recursos no estaba definida, el código fuente se pasaba de pendrive en pendrive y nadie sabe qué requerimientos están desarrollados y cuáles no. Por lo mismo, el control de avance del proyecto fue fatal, por el afán de cumplir con los plazos se dejó de hacer cualquier tipo de seguimiento y el esfuerzo se centró en desarrollar entregables.
+	\newline
+	El proyecto fue un completo fracaso.
+	{ \bf
+	En su calidad de Ingeniero de Software y en su rol de Jefe de proyecto se pide:
+	\begin{itemize}
+	 \item El presupuesto del proyecto, asumiendo un margen de ganancias del 20\%. (6 puntos)
+	 \item El tiempo ideal de entrega (en días). (12 puntos)
+	 \item El tiempo real de entrega (en días). (12 puntos) 
+	 \item Determinar las causas del fracaso del proyecto y entregar las medidas correctivas. (30 puntos)
+	\end{itemize}
+	}
+
+	\begin{answer}
+	    {\bf El presupuesto del proyecto}
+	    \begin{itemize}
+	     \item Planificación: 70 HH * 2 UF/HH = 140 UF (1 punto)
+	     \item Desarollo: 460 HH * 2.5 UF/HH = 1150 UF (1 punto)
+	     \item QA: 40 HH * 1 UF/HH = 40 UF (1 punto)
+	     \item Costo = 1330 UF (1 punto)
+	     \item Presupuesto = 1330 UF * 1.2 = 1596 UF (2 puntos)
+	    \end{itemize}
+
+	    {\bf Tiempo}
+	    \begin{itemize}
+	     \item Tiempo secuencial: 70 HH + 40HH = 110
+	     \item Tiempo paralelizable: 460 HH / 3 (la cantidad de desarrolladores) = 153.3 se aproxima a 154 HH
+	     \item Tiempo lineal: 110 + 154 = 264 HH 
+	    \end{itemize}
+
+	    \begin{itemize}
+	     \item Tiempo ideal: 264 / 8 = 33 días (12 puntos)
+	     \item Tiempo real: 264 / 5 = 52.8 = 53 días. (12 puntos)
+	    \end{itemize}
+
+	    {\bf Medidas correctivas}
+	    Existen una gran cantidad de factores que motivaron el fracaso del proyecto:
+	    \begin{itemize}
+	     \item No existe apoyo de alguien importante.
+	     \item No se comunicó la importancia del proyecto.
+	     \item No se usan metodologías para nada.
+	     \item No se mide nada.
+	    \end{itemize}
+	    (5 puntos)
+	    \newline
+	    
+	    Las medidas de mejora:
+	    \begin{itemize}
+	     \item 
+	    \end{itemize}
+
+
+	    
+
+	    
+	    
+	\end{answer}
+\end{question}
+
+\end{shortanswer}
+\end{document}
+

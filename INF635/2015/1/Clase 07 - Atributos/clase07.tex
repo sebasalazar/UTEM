@@ -1,0 +1,683 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+% \usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+\usepackage{multicol} %Permite usar múltiples columnas
+
+\pdfinfo
+{
+  /Title       (Ingeniería de Software)
+  /Creator     (TeX)
+  /Author      (Sebastián Salazar Molina)
+}
+
+
+\title{Ingeniería de Software}
+\subtitle{Metodologías de Desarrollo}
+\author{Sebastián Salazar Molina.}
+\institute[INF - UTEM] { Unidad de Informática - Universidad Tecnológica Metropolitana }
+\date{27 de Abril de 2015}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section*{}
+\begin{frame}
+  \frametitle{Contenidos}
+  \tableofcontents[section=1,hidesubsections]
+\end{frame}
+
+\AtBeginSection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[currentsection,hideallsubsections]
+  }
+}
+
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Contenidos}
+    \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide]
+  }
+}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Content starts here %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Usabilidad}
+\subsection{Introducción}
+
+\begin{frame}
+ \begin{quote}
+	``...lo que hace que algo sea usable es la ausencia de frustración en el uso''
+ \newline
+ \raggedleft{-- Jeffrey Rubin \& Dana Chisnell.}
+ \end{quote}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Usabilidad}
+ La Usabilidad es un atributo de calidad relacionado con la \alert{facilidad de uso} también se usa cómo sinónimo (o de forma indistinta) para refirnos a la \alert{experiencia de usuario (UX)}. 
+ \newline
+ Lo podemos resumir en los siguientes aspectos:
+ \begin{itemize}
+  \item<2-> La rapidez con que se puede aprender a usar ``algo''.
+  \item<3-> La mejora en desempeño que se produce por haber aprendido a usar ese ``algo''.
+  \item<4-> La facilidad de recordar el procedimiento correcto.
+  \item<5-> La facilidad (o dificultad) para inducir a errores.
+  \item<6-> El grado de aceptación del usuario (el gusto que tiene el usuario).
+  \item<7-> La variedad de posibilidades (flexibilidad) y la capacidad para recuperar la información (Robustez).
+ \end{itemize}
+\end{frame}
+
+\subsection{Paradigma}
+
+\begin{frame}
+ \frametitle{Cambio de Paradigma}
+ Un error común, es suponer que los usuarios tienen el mismo perfil (y los mismos conocimientos) de quién construye la solución de software. Por otro lado, al momento de diseñar se pondera mucho más la tecnología que la facilidad de uso.
+ \newline
+ Esto tiene consecuencias nefastas para el proyecto:
+ \begin{itemize}
+  \item<2-> Se invierte mucho esfuerzo en documentación que nadie lee.
+  \item<3-> Se gasta mucho tiempo (y a veces dinero) en soporte técnico.
+  \item<4-> Improductividad.
+  \item<5-> Frustración.
+ \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+ \frametitle{Importancia de la Usabilidad}
+ La importancia principal de la usabilidad, es disminuir las diferencias que pueden tener los usuarios. Algunos de los puntos a considerar, son:
+ \begin{itemize}
+  \item<2-> Discapacidades físicas (accesibilidad).
+  \item<3-> Diferencias culturales o de formación académica.
+  \item<4-> Los estados de ánimo.
+  \item<5-> Prejuicios.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Importancia de la Usabilidad}
+ Las interfaces de usuario, \alert{deben} aumentar la productividad de los usuarios.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{¿De qué trata la usabilidad?}
+ La usabilidad, \alert{nada} tiene que ver con el diseño gráfico (o con la estética en general).
+ \newline
+ De lo que verdaderamente trata la usabilidad es:
+ \begin{itemize}
+  \item<2-> Aumentar la productividad. Mejorando los tiempos de respuestas o aumentando la cantidad de ``trabajo'' que cada usuario puede realizar, disminuyendo el esfuerzo laboral e intelectual de la tarea.
+  \item<3-> Disminuir los costos. Evitando documentación innecesaria, disminuyendo el soporte técnico y los costos asociados al aprendizaje.
+ \end{itemize}
+
+\end{frame}
+
+\subsection{Enfoque}
+
+\begin{frame}
+ \frametitle{Enfoque}
+ Para entregar una adecuada experiencia de usuario, es importante tener claro algunas ideas:
+ \begin{itemize}
+  \item<2-> Objetivo de la solución de software, teniendo como base a un foco claro, se diseñan las estrategias que permitan conseguir dicho objetivo.
+  \item<3-> Enfatizar la fidelización de los usuarios.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Problemas típicos}
+ Existen problemas típicos (particularmente en los sitios web) ante los cuáles se deberían generar mecanismos, que le indiquen al usuario qué es lo que debe hacer en caso de un problema o definir un correo electrónico de contacto en caso de todo falle. Lo más típico:
+ \begin{itemize}
+  \item<2-> Páginas de Errores (Típicamente errores: 404, 500 y 503)
+  \item<3-> No se pudo completar su transacción...
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{¿Qué debemos evitar?}
+ Es muy cómodo no destinar esfuerzo a la usabilidad, el problema es que, esta desprolijidad produce muchos problemas al momento de utilizar la aplicación, las cosas que debemos evitar son principalmente:
+ \begin{itemize}
+  \item<2-> La inconsistencia. Los botones y elementos visuales deben ser estándar y congruentes en toda la aplicación.
+  \item<3-> Mentir. Se debe evitar engañar al usuario, ya sea con información ambigua o falsa (evitar el uso de las barras de progreso).
+  \item<4-> La falta de información o mensajes de error poco descriptivos. Ante un error, es de vital importancia, entregar un mensaje claro (idealmente con algún código único que permita al personal calificado determinar el problema), de tal forma que los usuarios entiendan (en la medida de lo posible) qué está ocurriendo.
+ \end{itemize}
+\end{frame}
+
+
+\section{Usuarios}
+
+\subsection{Tipos de Usuarios}
+
+\begin{frame}
+ \frametitle{Tipos de Usuarios}
+ Los usuarios no son iguales, cada uno tiene un conjunto de características que los hacen únicos, sin embargo, para lograr diseñar interfaces específicas, se han generado clasificaciones de usuarios, las típicas son según las características que estos tienen.
+ \begin{itemize}
+  \item<2-> Según el \alert{tiempo} que les toma adoptar la solución.
+  \item<3-> Según la \alert{experiencia} que tienen los usuarios en soluciones similares.
+  \item<4-> Según el \alert{tipo de aplicación}.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Según el tiempo}
+ Existen dos categorías:
+ \begin{itemize}
+  \item<2-> Early-Adopters (Entusiastas).
+  \item<3-> Usuarios comunes.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Según la experiencia}
+ Existen cuatro categorías:
+ \begin{itemize}
+  \item<2-> Novatos.
+  \item<3-> Intermedios.
+  \item<4-> Power Users.
+  \item<5-> Experto.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Según el tipo de aplicación}
+ Existen dos categorías:
+ \begin{itemize}
+  \item<2-> Usuarios cautivos.
+  \item<3-> Usuarios semi-cautivos.
+  \item<4-> Usuarios libres.
+  \item<5-> Usuarios independientes.
+ \end{itemize}
+\end{frame}
+
+\subsection{Usuario Especial}
+
+\begin{frame}
+ \frametitle{Usuario WEB}
+ En el mundo de la informática y computación, el usuario web tiene el control total. Es él, quien decide a qué accede, cuándo accede, cuánto tiempo destina en su visita.
+ \newline
+ Un estudio denominado ``Need for Speed'', determinaba que un usuario espera en promedio 8 segundos antes de cambiar de sitio, hoy esa cifra se ha reducido a 4 segundos. El usuario web, tiene características muy marcadas:
+ \begin{itemize}
+  \item<2-> Es sumamente \alert{impaciente}.
+  \item<3-> Prefiere los estándares de facto.
+  \item<4-> Prefiere fluidez de navegación y síntesis de contenidos.
+  \item<5-> Rara vez es un novato.
+  \item<6-> Hace comparaciones (y las publica).
+ \end{itemize}
+\end{frame}
+
+
+\subsection{Elección de Interfaz de Usuario}
+
+\begin{frame}
+ \frametitle{Interfaz de Usuarios}
+ La elección de la interfaz de usuario, debe ajustarse a tres aspectos:
+ \begin{itemize}
+  \item<2-> El objetivo de la solución de software.
+  \item<3-> El medio utilizado.
+  \item<4-> El tipo de usuario.
+ \end{itemize}
+\end{frame}
+
+\section{Consejos}
+\subsection{Consejos}
+
+\begin{frame}
+ \begin{quote}
+	``La verdadera usabilidad es invisible. Si algo anda bien, nadie se queja.''
+ \newline
+ \raggedleft{-- Jeffrey Rubin \& Dana Chisnell.}
+ \end{quote}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Consejos}
+ \begin{itemize}
+  \item<1-> El buen contenido es valorado por los usuarios.
+  \item<2-> El rendimiento \alert{importa}. Los usuarios quieren sistemas con bajísimos tiempos de respuesta.
+  \item<3-> El adecuado manejo de los recursos es una características deseada en cualquier sistema.
+  \item<4-> (Casi) Nadie lee un artículo completo, por lo general se lee saltando párrafos o ideas. Lo importante es resaltar lo importante.
+  \item<5-> Muchas veces los usuarios se quedan con la primera alternativa que solucione razonablemente sus necesidades.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Consejos}
+ \begin{itemize}
+  \item<1-> Tome en cuenta la opinión del usuario. A veces se les ocurren buenas ideas.
+  \item<2-> El esfuerzo debe estar en crear interfaces intuitivas. Nadie lee los manuales, salvo que haya algún problema (grave).
+  \item<3-> Use estándares y cree software \alert{predecible}.
+  \item<4-> Genere mensajes descriptivos.
+  \item<5-> Provea feedback (o al menos el correo electrónico de alguien que pueda dar soporte).
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Consejos}
+ \begin{itemize}
+  \item<1-> Las funcionalidades (idealmente) se deben reconocer (no recordar).
+  \item<2-> Se debe minimizar las entradas de usuario.
+  \item<3-> Utilice metáforas (iconos reconocibles de la vida diaria).
+  \item<4-> El software debe ser consistente (Colores, Tipografía, Botones, etc).
+  \item<5-> Exponga su software a un usuario neófito, aplique el feedback.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Consejos para la Usabilidad Web}
+ Existen cinco recomendaciones típicas, a tener en cuenta, cuando se desarrolla una solución web.
+ \begin{itemize}
+  \item<2-> Velocidad. Los usuarios son impacientes y por regla general esperan una carga semicompleta en menos de 4 segundos.
+  \item<3-> Simpleza. Mantenga una navegación constante. El diseño minimalista (pero útil) es el camino para lograr un equilibrio entre funcionalidad y utilidad.
+  \item<4-> Indexable. Los motores de búsqueda no son humanos, no entienden animaciones (y muchas veces) tampoco javascript.
+  \item<5-> Compatibilidad. Existen demasiadas alternativas, sólo el uso adecuado de la tecnología y los estándares, le permitirá una navegación adecuada entre todos los actores del mercado, hacer pruebas es indispensable.
+  \item<6-> Actualización. Sólo un sitio actualizado es atractivo.
+ \end{itemize}
+\end{frame}
+
+
+\section{Rendimiento}
+\subsection{Introducción}
+
+\begin{frame}
+ \begin{quote}
+	``Dicen que los pesimistas ven el vaso medio vacío; los optimistas, en cambio, lo ven medio lleno. Los ingenieros, por supuesto, ven que el vaso es el doble de grande de lo que sería necesario''
+ \newline
+ \raggedleft{-- Bob Lewis.}
+ \end{quote}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Introducción}
+ En el contexto actual, se espera mucho de las soluciones informáticas. Debido principalmente a la mayor disponibilidad de recursos económicos y tecnológicos.
+ \newline
+ Queremos herramientas fiables, que soporten mucha carga de usuarios y que sean rápidas.
+ \pause
+ Deseamos Software de un alto \alert{Rendimiento}, \alert{Escalable} y \alert{Fiable}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Medición}
+ Para poder entregar una solución concreta a estos atributos de calidad, es imprescindible tener mecanismos de medición, que me permitan conocer el estado actual para poder realizar estimaciones futuras, en base a información certera.
+\end{frame}
+
+
+\subsection{Rendimiento}
+
+\begin{frame}
+ \frametitle{Rendimiento}
+ El software tiene la capacidad de administrar los recursos de que dispone. Un buen software es aquel que los administra eficientemente.
+ \newline
+ Siempre hay un potencial para mejorar el uso de los recursos. Para poder descubrir y atacar esto se debe controlar y evaluar periódicamente nuestra solución de software.
+\end{frame}
+
+
+\subsection{Problemas}
+
+\begin{frame}
+ \frametitle{Principales Problemas}
+ Existen muchas alternativas para monitorizar y controlar el software, pero nos enfrentamos a problemas considerables:
+ \begin{itemize}
+  \item<2-> Ausencia de personal calificado, que pueda realizar medidas correctivas.
+  \item<3-> Grandes cantidades de información dispersa, difícil de interpretar y que no generan valor.
+  \item<4-> El software cada vez es más crítico para las empresas (incluso imprescindible) y la indisponiblidad genera grandes perdidas.
+ \end{itemize}
+\end{frame}
+
+
+\subsection{Enfoque}
+
+
+\begin{frame}
+ \frametitle{Enfoque típico}
+ Para poder definir y establecer las métricas con las cuales se evaluará una solución de software, es necesario, determinar una línea base. Esta línea base se determina en base a las pruebas de rendimiento. Existen diferentes tipos de pruebas, que se utilizan en diversas situaciones, que se clasifican a continuación:
+ \begin{itemize}
+  \item<2-> Pruebas de carga. Cómo se comporta la solución ante una determinada ``carga''.
+  \item<3-> Prueba de estrés. Llevar la aplicación al límite de sus capacidades (Romperla).
+  \item<4-> Prueba de estabilidad (soak testing). Pruebas de carga continua.
+  \item<5-> Pruebas de peak (spike testing). Prueba ante cambios drásticos.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Problemas}
+ Si bien esta aproximación es bastante adecuada para la mayoría de los casos, presenta algunos problemas comunes, entre los cuales podemos resumir:
+ \begin{itemize}
+  \item<2-> Diferencias entre los ambientes de pruebas y los reales.
+  \item<3-> Mala (o pobre) definición del plan de pruebas (al final la prueba ``no prueba nada'').
+  \item<4-> Mala utilización de las herramientas de monitorización y pruebas (terminan agregando una carga no despreciable)
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Consejos}
+ \begin{itemize}
+  \item<1-> Es sumamente importante, definir las especificaciones de rendimiento, desde el inicio del proyecto. Desde los requerimientos, se definen metas claras, que se transforman en un plan de trabajo y objetivos medibles cuantitativamente.
+  \item<2-> Definir un plan de pruebas realista y sencillo.
+  \item<3-> Identificar los cuellos de botella.
+  \item<4-> Acostumbrarse al uso de una herramienta y manejarla bien.
+  \item<5-> Para sistemas grandes, manejar información estadística del rendimiento y desarrollar reportes con alguna periodicidad para evaluar cómo se desempeña el sistema en el tiempo.
+ \end{itemize}
+\end{frame}
+
+
+\section{Escalabilidad}
+\subsection{Escalabilidad}
+
+\begin{frame}
+ \frametitle{Escalabilidad}
+ ``La escalabilidad es la propiedad deseable de un sistema, una red o un proceso, que indica su habilidad para reaccionar y adaptarse sin perder calidad, o bien manejar el crecimiento continuo de trabajo de manera fluida, o bien para estar preparado para hacerse más grande sin perder calidad en los servicios ofrecidos''.
+
+ \pause
+
+ Un \alert{sistema escalable} es aquel cuyo rendimiento es mejorado (proporcionalmente, idealmente de forma lineal) después de haberle añadido más capacidad hardware.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Definición}
+ Para que un sistema sea escalable tiene que cumplir tres condiciones:
+ \begin{itemize}
+  \item<2-> Tiene que poder adaptarse a un incremento (o decremento) en el número de usuarios. 
+  \item<3-> Tiene que poder adaptarse a un incremento en el volumen de datos con los que opera.
+  \item<4-> Tiene que ser \alert{mantenible}.
+ \end{itemize}
+\end{frame}
+
+
+\subsection{Problema}
+
+\begin{frame}
+ \frametitle{Problema}
+ Uno de los problemas más comunes, es la tendencia a pensar en la escalabilidad y el rendimiento como sinónimos, cuando \alert{nada} tiene que ver lo uno con lo otro. Muchas veces una aplicación con un buen rendimiento, es difícil de escalar y viceversa.
+ \newline
+ \pause
+ El principal problema, es que las aplicaciones se diseñan sin pensar en la necesidad de escalabilidad que pueda tener la aplicación.
+\end{frame}
+
+
+\subsection{Clasificación}
+
+\begin{frame}
+ \frametitle{Clasificación}
+ Cuando se habla de Escalabilidad, esta se clasifica en dos Tipos.
+ \begin{itemize}
+  \item<2-> Escalabilidad \alert{Vertical}. Cuando mejoramos nuestras infraestructura, sin hacer cambios en la aplicación.
+  \item<3-> Escalabilidad\alert{Horizontal}. Cuando agregamos más máquinas y distribuimos la aplicación entre estas máquinas.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Escalabilidad Vertical}
+ Escalar hacia arriba es fácil, pasa básicamente por un tema monetario (Cuánto podemos gastar para mejorar nuestra máquina). Sin embargo, existe un límite, llega un punto en que ni con todo el dinero del mundo, se puede mejorar esa misma máquina.
+ \newline
+ La ventaja más destacable, es que en teoría, la escalabilidad vertical no requiere ningún tipo de cambio en la aplicación.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Escalabilidad Horizontal}
+ Cuándo una aplicación es muy grande, mejorar el hardware no soluciona los problemas de escala, ante este escenario, es necesario escalar hacia el lado. Agregar más máquinas que puedan solucionar los problemas.
+ \newline
+ Una interesante ventaja de esta aproximación, es que en teoría, la escalabilidad horizontal no tiene límites.
+\end{frame}
+
+\begin{frame}
+ \frametitle{Escalabilidad Horizontal}
+ La arquitectura típica es la ``shared nothing''. En donde cada uno de los nodos de la aplicación son independientes, autocontenidos y autosuficientes. Amazón EC2, Google y muchos sistemas de nube, ocupan esta técnica, porque es barata, el estado de la aplicación no se guarda en los nodos individuales sino que es compartida por todo el sistema. De esta forma, si algún nodo falla no se pierde información y el sistema puede seguir funcionando.
+\end{frame}
+
+
+\subsection{Consejos}
+
+\begin{frame}
+ \frametitle{Links de Interés}
+ \href{http://benchmarksgame.alioth.debian.org}{http://benchmarksgame.alioth.debian.org}
+ \newline
+ \href{http://bigocheatsheet.com/}{http://bigocheatsheet.com/}
+ \newline
+ \href{http://www.techempower.com/benchmarks/}{http://www.techempower.com/benchmarks/}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Consejos}
+ \begin{itemize}
+  \item<2-> Identificar cuál es el problema de escalabilidad que nos aqueja. Problemas de concurrencia, carga, degradación en los tiempos de respuesta.
+  \item<3-> Escoger la herramienta adecuada y los procesos adecuados, para el desarrollo de la solución de Software.
+  \item<4-> Determinar los cuellos de botella. Evaluar alternativas.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Escalabilidad por Software}
+ Muchas veces, nos vemos inmerso en la necesidad de diseñar una aplicación escalable desde sus inicios, en base a mi experiencia, estos son mis consejos:
+ \begin{itemize}
+  \item<2-> Utilizar colas (con ``Message Oriented Middleware'') para diferir el procesamiento. Existen varias alternativas (RabbitMQ, IBM WebSphere MQ, etc).
+  \item<3-> Separar funciones complejas en Servicios Web.
+  \item<4-> Servir contenido estático en máquinas diferentes a las que procesan información.
+  \item<5-> Utilizar caché para datos de lectura. EHCache es una excelente herramienta.
+  \item<6-> Utilizar Proxies para los recursos.
+ \end{itemize}
+\end{frame}
+ 
+\begin{frame}
+ \frametitle{Escalabilidad por Software}
+ \begin{itemize}
+  \item<2-> Balanceo de Carga.
+  \item<3-> Pooling de Base de datos. 
+  \item<4-> Clusterización.
+  \item<5-> Evitar la deuda técnica.
+\end{itemize}
+\end{frame}
+
+
+
+\section{Caso Práctico}
+
+\subsection{Tumblr}
+
+\begin{frame}
+ \frametitle{Caso Tumblr}
+ Tumblr es una plataforma de microblogging que permite a sus usuarios publicar textos, imágenes, vídeos, enlaces, citas y audio a manera de ``tumblelog''. La empresa fue fundada en 2007. Los usuarios pueden «seguir» (follow) a otros usuarios registrados y ver las entradas de éstos conjuntamente con las suyas, por lo cual, Tumblr puede ser considerado una herramienta social. El servicio es muy sencillo de personalizar y muestra diversas opciones de temas, así como la opción de poder ponerle reproductor de música.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Inicios}
+ En sus inicios (2007) se le daba a cada blog, un subdominio personalizado en el Hosting que utilizaba Tumblr (Rackspace). Cuando empezaron a crecer tenían demasiados usuarios que migrar desde Rackspace, lo que generaba muchos problemas heredados, la primera aproximación fue utilizar \href{http://haproxy.1wt.eu/}{HAProxy} y \href{https://www.varnish-cache.org/}{Varnish} para escalar esta aplicación LAMP.
+ \newline
+ Cada desarrollador programaba en PHP.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Inicios}
+ Comenzaron con un servidor web, servidor de base de datos y una aplicación PHP, todo comenzó a crecer desde ahí. Para escalar usaban memcache, a continuación, pusieron el almacenamiento en caché de cliente, luego, HAProxy delante de las cachés, y por último utilizaron MySQL sharding. 
+\end{frame}
+
+\begin{frame}
+ \frametitle{Inicios}
+ La idea era centralizar todo en servidor, sin embargo algunas tareas complejas las escribieron en C (un generador de ids y Staircar), utilizando \href{http://redis.io/}{Redis} para las notificaciones del Dashboard que tienen un enfoque de reunión - dispersión, los eventos se muestran cuando un usuario accede a su Dashboard, en ese momento también se cargan los eventos de los usuarios que seguimos. 
+ \newline
+ Todo esto funcionó bien hasta los últimos meses del año pasado, en donde este mecanismo de particionamiento dejó de funcionar bien.
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Estadísticas}
+ \begin{multicols}{2}
+    \begin{itemize}
+     \item 500 millones de page views por día.
+     \item Más de 15 mil millones de page views por mes.
+     \item Aproximadamente trabajan 20 Ingenieros.
+     \item El peak es de más de 40 mil peticiones por segundo.
+     \item Muchos Teras por días distribuidos en  MySQL/HBase/Redis/Memcache.
+     \item La plataforma tiene un crecimiento de un 30\% al mes.
+     \item Existem más de 1000 nodos en producción.
+     \item Se postean 50GB por día, Las actualizaciones de seguidores suman más de 2.7 TB por día.
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Software}
+ \begin{multicols}{2}
+    \begin{itemize}
+     \item \href{http://www.apache.org/}{Apache}
+     \item \href{http://php.net/}{PHP} \href{http://www.scala-lang.org/}{Scala} \href{http://www.ruby-lang.org/es/}{Ruby}
+     \item \href{http://redis.io/}{Redis}, \href{http://hbase.apache.org/}{HBase}, \href{http://www.mysql.com/}{MySQL}
+     \item \href{https://www.varnish-cache.org/}{Varnish}, \href{http://haproxy.1wt.eu/}{HA-Proxy}, \href{http://nginx.org/}{nginx}, 
+     \item \href{http://memcached.org/}{Memcache}, \href{http://www.gearman.org/}{Gearman}, \href{http://kafka.apache.org/}{Kafka}, \href{https://github.com/robey/kestrel}{Kestrel}, \href{http://twitter.github.io/finagle/}{Finagle}
+     \item \href{http://thrift.apache.org/}{Thrift}, \href{http://func.et.redhat.com/}{Func}
+     \item \href{http://git-scm.com/}{Git}, \href{https://github.com/capistrano/capistrano}{Capistrano}, \href{http://www.puppetlabs.com/}{Puppet}, \href{http://jenkins-ci.org/}{Jenkins}
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Hardware}
+ \begin{multicols}{2}
+    \begin{itemize}
+     \item 500 Servidores Web.
+     \item 200 Servidores de Base de datos.
+     \item 30 Servidores memcache.
+     \item 22 Servidores redis.
+     \item 15 Servidores varnish.
+     \item 25 nodos haproxy.
+     \item 8 Servidores nginx.
+     \item 14 Servidores para encolamiento de tareas (kestrel + gearman)
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Situación Actual}
+ \begin{itemize}
+  \item<2-> Contratación de personal con conocimiento en JVM.
+  \item<3-> El objetivo es mover todo de la aplicación PHP en ``servicios'' y hacer que la aplicación sea una capa fina sobre los servicios que realiza la autenticación de solicitudes, presentación, etc.
+  \item<4-> Migración a Scala, fuerte uso de Finagle.
+  \item<5-> Datos no relacionales se almacenan en HBase y Redis, pero el fuerte de los datos se persisten actualmente en una arquitectura de MySQL (fuertemente particionada).
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Situación Actual}
+ \begin{itemize}
+  \item<2-> HBase se usa para condiciones de alta demanda de escritura, pero la lógica sigue estando en MySQL.
+  \item<3-> Se creó un framework común de servicios.
+  \item<4-> 40 máquinas tienen la capa frontal (Una mezcla de HAProxy y Varnish).
+  \item<5-> 500 servidores apache procesan las peticiones PHP.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Situación Actual}
+ \begin{itemize}
+  \item<2-> HBase se usa para condiciones de alta demanda de escritura, pero la lógica sigue estando en MySQL.
+  \item<3-> Se creó un framework común de servicios.
+  \item<4-> 40 máquinas tienen la capa frontal (Una mezcla de HAProxy y Varnish).
+  \item<5-> 500 servidores apache procesan las peticiones PHP.
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Situación Actual}
+ \begin{itemize}
+  \item<2-> Existen 6 servicios de Backend PHP, que se actualizan cada 2 a 3 semanas.
+  \item<3-> Scala no comparte el estado de la aplicación, los estados son manejados por la base de datos.
+  \item<4-> Están corriendo 22 servidores Redis, con más de 100 instancias en Producción.
+  \item<5-> Se le dá especial importancia al uso adecuado del caché.
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Lecciones Aprendidas por Tumblr}
+  \begin{itemize}
+   \item<2-> Se debe automatizar todo lo posible de ser automatizado.
+   \item<3-> La bases de datos pueden escalar (con mucho trabajo) las aplicación no.
+   \item<4-> Redis es la cumbia.
+   \item<5-> Scala tiene un rendimiento impresionante.
+   \item<6-> Huye de los proyectos en que no confías.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Lecciones Aprendidas por Tumblr}
+  \begin{itemize}
+   \item<2-> Se debe contratar personal que pueda adaptarse a situaciones complejas y puedan hacer su trabajo pese a las dificultades.
+   \item<3-> Se desarrolla según las habilidades del equipo.
+   \item<4-> Leer artículos y blogs técnicos. Ideas clave de diseño se encuentran en la red.
+   \item<5-> Conversar con los colegas es importante, compartir experiencias es un valor muy positivo.
+   \item<6-> Antes de Saltar a las nuevas tecnologías, use proyectos pilotos pequeños con riesgos controlados para aprender y ganar experiencia.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Artículo Completo}
+  
+  \href{http://highscalability.com/blog/2013/5/20/the-tumblr-architecture-yahoo-bought-for-a-cool-billion-doll.html}{http://highscalability.com/blog/2013/5/20/the-tumblr-architecture-yahoo-bought-for-a-cool-billion-doll.html}
+\end{frame}
+
+
+
+
+\frame{
+  \vspace{2cm}
+  {\huge ¿ Preguntas ?}
+
+  \vspace{3cm}
+  \begin{flushright}
+    Sebastián Salazar Molina
+
+    \structure{\footnotesize{sebasalazar@gmail.com}}
+  \end{flushright}
+}
+
+\end{document}
